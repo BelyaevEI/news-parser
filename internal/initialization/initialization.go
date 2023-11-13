@@ -58,22 +58,22 @@ func (service *Services) RunServices() {
 	// Run bloomberg
 	go service.Bloomberg.RunBloomberg()
 	go service.Bloomberg.DeletePostedArt()
-	time.Sleep(time.Minute * 15)
+	time.Sleep(time.Minute * 5)
 
 	// Run economist
 	go service.Eco.RunEconomist()
 	go service.Eco.DeletePostedArt()
-	time.Sleep(time.Minute * 15)
+	time.Sleep(time.Minute * 5)
 
 	// Run New York Times
 	go service.Nyt.RunNewYorkTimes()
 	go service.Nyt.DeletePostedArt()
-	time.Sleep(time.Minute * 15)
+	time.Sleep(time.Minute * 5)
 
 	// Run rbc
 	go service.Rbc.RunRBC()
 	go service.Rbc.DeletePostedArt()
-	time.Sleep(time.Minute * 15)
+	time.Sleep(time.Minute * 5)
 
 	// Run wall street journal
 	go service.Wsj.RunWallStreetJournal()

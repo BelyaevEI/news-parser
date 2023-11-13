@@ -34,7 +34,7 @@ func (s *Service) RunRBC() {
 
 		// Check posted article or not
 		if posted := s.checkPostedArticle(article); posted {
-			time.Sleep(time.Minute * 30)
+			time.Sleep(time.Minute * 15)
 			continue
 		}
 

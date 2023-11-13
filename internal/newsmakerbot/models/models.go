@@ -1,6 +1,6 @@
 package models
 
 const (
-	TOKEN           = "This secret token of channel"
+	TOKEN           = "6577047028:AAEEyE6iYBdEJy7dO_dS0wqPbT0shkOcGzc"
 	CHANNELUSERNAME = "@TODAYNEWSWORLDS"
 )
