@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  telegram-bot:
+    image: "telegram-bot-sdk:latest"
+    environment:
+      - 6577047028:AAEEyE6iYBdEJy7dO_dS0wqPbT0shkOcGzc
+    restart: always
