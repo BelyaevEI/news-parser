@@ -1,33 +1,29 @@
-# Используем официальный образ Golang как базовый образ
-FROM golang:1.21 AS build
+# Stage 1: Сборка приложения
+FROM golang:1.21 AS builder
 
-# Установка рабочей директории
-WORKDIR /src
+WORKDIR /app
 
-# Копируем зависимости
-COPY go.mod go.sum ./
+# Копируем go.mod и go.sum для ускорения сборки при изменении зависимостей
+COPY go.mod .
+COPY go.sum .
 
-# Загрузка зависимостей
+# Скачиваем зависимости
 RUN go mod download
 
-# Копируем исходный код проекта в контейнер
-COPY . .
+# Копируем остальные файлы проекта
+COPY internal internal
+COPY cmd cmd
 
-# Сборка приложения
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ./cmd
+# Собираем Go-приложение
+RUN CGO_ENABLED=0 go build -o /app/server cmd/main.go
 
-# Создание конечного образа
+# Stage 2: Финальный образ
 FROM alpine:latest
-RUN apk --no-cache add ca-certificates
 
-WORKDIR /root/
+WORKDIR /app
 
-# Копируем скомпилированный бинарный файл из предыдущего этапа
-COPY --from=build /src/main .
+# Копируем исполняемый файл из Stage 1
+COPY --from=builder /app/server .
 
-# Определение переменных окружения, если необходимо
-# ENV TELEGRAM_BOT_TOKEN=YOUR_BOT_TOKEN
-# ENV OTHER_ENV_VARIABLE=VALUE
-
-# Запуск бота
-CMD ["./main"]
+# Запускаем приложение
+CMD ["./server"]
