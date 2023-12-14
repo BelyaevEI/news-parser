@@ -13,11 +13,11 @@ import (
 )
 
 type Service struct {
-	store storage.Storage
+	store *storage.Storage
 	bot   *newsmakerbot.NewsMaker
 }
 
-func New(s storage.Storage, bot *newsmakerbot.NewsMaker) *Service {
+func New(s *storage.Storage, bot *newsmakerbot.NewsMaker) *Service {
 	return &Service{store: s,
 		bot: bot}
 }

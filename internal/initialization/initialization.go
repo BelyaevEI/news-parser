@@ -38,11 +38,11 @@ func New() *Services {
 	storageco := storage.New()
 
 	// Init services
-	rbc := servicerbc.New(*storagerbc, bot)
-	bloomberg := servicebloomberg.New(*storagebloomberg, bot)
-	nyt := servicenyt.New(*storagenyt, bot)
-	wsj := servicewsj.New(*storgaewsj, bot)
-	eco := serviceco.New(*storageco, bot)
+	rbc := servicerbc.New(storagerbc, bot)
+	bloomberg := servicebloomberg.New(storagebloomberg, bot)
+	nyt := servicenyt.New(storagenyt, bot)
+	wsj := servicewsj.New(storgaewsj, bot)
+	eco := serviceco.New(storageco, bot)
 
 	return &Services{Rbc: rbc,
 		Bloomberg: bloomberg,
